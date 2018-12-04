@@ -1,0 +1,11 @@
+[package]
+name = "advent-of-code-2018"
+version = "0.1.0"
+authors = ["Par Wenaker <par.wenaker@callistaenterprise.se>"]
+edition = "2018"
+
+[dependencies]
+lazy_static = "1.2.0"
+itertools = "0.7.11"
+regex = "1.1.0"
+rayon = "1.0.3"
