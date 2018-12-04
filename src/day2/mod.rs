@@ -13,10 +13,16 @@ pub fn run1() -> usize {
 }
 
 fn count(num: u32, row: &str) -> bool {
-    return row.chars().fold(HashMap::<char, u32>::new(), |mut acc, c| {
-        *acc.entry(c).or_insert(0) += 1;
-        acc
-    }).iter().filter(|(_,v)| **v == num).count() > 0;
+    return row
+        .chars()
+        .fold(HashMap::<char, u32>::new(), |mut acc, c| {
+            *acc.entry(c).or_insert(0) += 1;
+            acc
+        })
+        .iter()
+        .filter(|(_, v)| **v == num)
+        .count()
+        > 0;
 }
 
 pub fn count_two(row: &str) -> bool {
@@ -35,14 +41,17 @@ pub fn run2() -> HashSet<String> {
 
     let row_len: usize = rows1.iter().map(|r| r.len()).next().unwrap();
 
-    rows1.iter().flat_map(|&e1| rows2.iter().map(move |e2| cmp(e1,e2)))
+    rows1
+        .iter()
+        .flat_map(|&e1| rows2.iter().map(move |e2| cmp(e1, e2)))
         .filter(|s| s.len() == row_len - 1)
         .collect::<HashSet<_>>()
 }
 
-fn cmp(str1: &str, str2: &str) -> String{
-    str1.chars().zip(str2.chars())
-        .filter(|(a,b)| a == b)
+fn cmp(str1: &str, str2: &str) -> String {
+    str1.chars()
+        .zip(str2.chars())
+        .filter(|(a, b)| a == b)
         .map(|(c1, _)| c1)
         .collect::<String>()
 }
@@ -108,17 +117,22 @@ mod tests {
 
     #[test]
     fn test9() {
-        let rows1 = vec!["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"];
+        let rows1 = vec![
+            "abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz",
+        ];
         let rows2 = rows1.clone();
 
-        let b =
-            rows1.iter().flat_map(|&e1| rows2.iter().map(move |e2| cmp(e1,e2)))
-                .filter(|s| s.len() == 4)
-                .collect::<HashSet<_>>();
+        let b = rows1
+            .iter()
+            .flat_map(|&e1| rows2.iter().map(move |e2| cmp(e1, e2)))
+            .filter(|s| s.len() == 4)
+            .collect::<HashSet<_>>();
 
         let a: HashSet<String> = vec!["fgij".to_string()].into_iter().collect();
         println!("{:?}", b);
-        assert_eq!(vec!["fgij".to_string()].into_iter().collect::<HashSet<_>>(), b);
-
+        assert_eq!(
+            vec!["fgij".to_string()].into_iter().collect::<HashSet<_>>(),
+            b
+        );
     }
 }

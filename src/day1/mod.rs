@@ -7,7 +7,8 @@ static INPUT: &str = "./src/day1/input.txt";
 pub fn run1() -> i32 {
     let input = read_file(INPUT);
 
-    input.split("\n")
+    input
+        .split("\n")
         .map(|s| s.to_string().parse::<i32>().unwrap())
         .sum()
 }
@@ -15,8 +16,10 @@ pub fn run1() -> i32 {
 pub fn run2() -> Option<i32> {
     let input = read_file(INPUT);
 
-    let result = input.split("\n")
-        .map(|s| s.to_string().parse::<i32>().unwrap()).collect::<Vec<i32>>();
+    let result = input
+        .split("\n")
+        .map(|s| s.to_string().parse::<i32>().unwrap())
+        .collect::<Vec<i32>>();
 
     let mut r: HashSet<i32> = vec![].into_iter().collect();
     let mut last = 0;
