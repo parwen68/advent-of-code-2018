@@ -63,17 +63,12 @@ fn get_guards() -> Vec<Guard> {
         .scan(0, |state, e| {
             *state = match2
                 .captures(e.as_str())
-                .map(|e| e.get(1).unwrap().as_str().parse::<usize>().unwrap())
+                .map(|e| e[1].parse::<usize>().unwrap())
                 .unwrap_or(*state);
 
-            let time = match1
+            let time: (usize, usize) = match1
                 .captures(e.as_str())
-                .map(|e| {
-                    (
-                        e.get(1).unwrap().as_str().parse::<usize>().unwrap(),
-                        e.get(2).unwrap().as_str().parse::<usize>().unwrap(),
-                    )
-                })
+                .map(|e| (e[1].parse().unwrap(), e[2].parse().unwrap()))
                 .unwrap();
 
             Some(if e.contains("wakes") {
