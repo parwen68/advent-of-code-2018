@@ -3,6 +3,8 @@ extern crate lazy_static;
 #[macro_use]
 extern crate itertools;
 extern crate rayon;
+#[macro_use]
+extern crate maplit;
 
 mod common;
 mod day1;
@@ -10,6 +12,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 fn main() {
     println!("Day 1, step 1: {:?}", day1::run1());
@@ -22,4 +25,6 @@ fn main() {
     println!("Day 4, step 2: {:?}", day4::run2());
     println!("Day 5, step 1: {:?}", day5::run1());
     println!("Day 5, step 2: {:?}", day5::run2());
+    println!("Day 6, step 1: {:?}", day6::run1());
+    println!("Day 6, step 2: {:?}", day6::run2());
 }
