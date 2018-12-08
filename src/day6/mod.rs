@@ -80,7 +80,10 @@ impl Coordinate {
 }
 
 fn parse_coords(input_str: &str) -> Vec<Location> {
-    input_str.lines().map(|s| Location::new(s)).collect::<Vec<_>>()
+    input_str
+        .lines()
+        .map(|s| Location::new(s))
+        .collect::<Vec<_>>()
 }
 
 fn get_space_size(locations: &[Location]) -> (usize, usize) {
