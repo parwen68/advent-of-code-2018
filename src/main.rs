@@ -8,6 +8,7 @@ extern crate maplit;
 
 mod common;
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -34,6 +35,7 @@ fn main() {
     println!("Day 7, step 2: {:?}", day7::run2());
     println!("Day 8, step 1: {:?}", day8::run1());
     println!("Day 8, step 2: {:?}", day8::run2());
-    println!("Day 9, step 1: {:?}", day9::run1());
-    println!("Day 9, step 2: {:?}", day9::run2());
+    println!("Day 10, step 1:\n");
+    day10::run1().iter().for_each(|line| println!("{}", line));
+    println!("Day 10, step 2: {:?}", day10::run2());
 }
