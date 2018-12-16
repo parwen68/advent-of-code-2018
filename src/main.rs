@@ -1,3 +1,4 @@
+#![feature(drain_filter)]
 #[macro_use]
 extern crate lazy_static;
 #[macro_use]
@@ -7,9 +8,11 @@ extern crate rayon;
 extern crate maplit;
 
 mod common;
-/*
 mod day1;
 mod day10;
+mod day11;
+mod day12;
+mod day13;
 mod day2;
 mod day3;
 mod day4;
@@ -18,11 +21,8 @@ mod day6;
 mod day7;
 mod day8;
 mod day9;
-*/
-mod day11;
 
 fn main() {
-/*
     println!("Day 1, step 1: {:?}", day1::run1());
     println!("Day 1, step 2: {:?}", day1::run2());
     println!("Day 2, step 1: {:?}", day2::run1());
@@ -44,7 +44,10 @@ fn main() {
     println!("Day 10, step 1:\n");
     day10::run1().iter().for_each(|line| println!("{}", line));
     println!("Day 10, step 2: {:?}", day10::run2());
-*/
     println!("Day 11, step 1: {:?}", day11::run1());
     println!("Day 11, step 2: {:?}", day11::run2());
+    println!("Day 12, step 1: {:?}", day12::run1());
+    println!("Day 12, step 2: {:?}", day12::run2());
+    println!("Day 13, step 1: {:?}", day13::run1());
+    println!("Day 13, step 2: {:?}", day13::run2());
 }

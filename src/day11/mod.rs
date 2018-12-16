@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use rayon::prelude::*;
+use std::collections::HashMap;
 
 static INPUT: isize = 3613;
 
@@ -22,18 +22,17 @@ fn translate(x: isize, y: isize) -> usize {
 fn translate_back(p: usize) -> Coord {
     let y = p / 300 + 1;
     let x = p % 300 + 1;
-    Coord(x as isize,y as isize)
+    Coord(x as isize, y as isize)
 }
 
 fn set_up(serial: isize) -> Vec<isize> {
-    let mut cells:Vec<isize> = vec![0; 300*300];
+    let mut cells: Vec<isize> = vec![0; 300 * 300];
 
     for p in 0..300 * 300 {
         cells[p] = calc(&translate_back(p), serial)
     }
     cells
 }
-
 
 fn mask(size: isize) -> Vec<usize> {
     let xs: Vec<isize> = (1..=size).map(|dx| dx).collect();
@@ -52,13 +51,18 @@ fn find(serial: isize, size: isize) -> (Coord, isize) {
 
     let mask = mask(size);
 
-    let d = (0..300 * 300).
-        filter(|p| {
-            let Coord(x,y) = translate_back(*p);
+    let d = (0..300 * 300)
+        .filter(|p| {
+            let Coord(x, y) = translate_back(*p);
             x < x_max && y < y_max
-        }).fold((0usize, std::isize::MIN), |r, p| {
+        })
+        .fold((0usize, std::isize::MIN), |r, p| {
             let sum = mask.iter().map(|c| cells[p + *c as usize]).sum();
-            if sum > r.1 { (p, sum) } else { r }
+            if sum > r.1 {
+                (p, sum)
+            } else {
+                r
+            }
         });
 
     (translate_back(d.0), d.1)
@@ -71,7 +75,8 @@ pub fn run1() -> String {
 }
 
 pub fn run2() -> String {
-    let r: (isize, (Coord, isize)) = (1..300isize).into_par_iter()
+    let r: (isize, (Coord, isize)) = (1..300isize)
+        .into_par_iter()
         .map(|i| (i, find(INPUT, i)))
         .max_by_key(|e| (e.1).1)
         .unwrap();
